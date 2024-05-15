@@ -1,15 +1,20 @@
 #pragma once
+#include <iostream>
+#include <Windows.h>
+
 class Enemy
 {
 public:
 	Enemy();
 	~Enemy();
 
-	void Close();
+	void GettingClose();
+	void Shooting();
+	void Backoff();
 
 	void Update();
 
 private:
-	static void (Enemy::*phaseTable[])();
+	static void (Enemy::*phaseFuncTable[])();
 };
 
