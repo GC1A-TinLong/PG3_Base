@@ -6,8 +6,9 @@ Enemy::Enemy()
 
 Enemy::~Enemy(){}
 
-const unsigned int waitingTime = 500;
-void (Enemy::* Enemy::phaseFuncTable[])() = {
+const unsigned int waitingTime = 500;	// for tempo
+
+void (Enemy::* Enemy::phaseFuncTable[])() = {	// member function table - enemy phase
 	&Enemy::GettingClose,
 	&Enemy::Shooting,
 	&Enemy::Backoff
@@ -51,7 +52,7 @@ void Enemy::Backoff()
 
 void Enemy::Update()
 {
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 3; i++) {	// run the function table 3 times
 		(this->*phaseFuncTable[i])();
 	}
 	Sleep(waitingTime);
