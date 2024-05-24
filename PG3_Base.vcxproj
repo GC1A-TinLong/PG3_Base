@@ -127,7 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArmoredCoreVI.cpp" />
+    <ClCompile Include="EldenRing.cpp" />
+    <ClCompile Include="FromsoftGames.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sekiro.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ArmoredCoreVI.h" />
+    <ClInclude Include="EldenRing.h" />
+    <ClInclude Include="FromsoftGames.h" />
+    <ClInclude Include="Sekiro.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
