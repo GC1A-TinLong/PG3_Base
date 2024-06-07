@@ -1,47 +1,64 @@
 #include <stdio.h>
 #include <iostream>
 #include "Function.h"
-#include <time.h>
+#include <random>
+
 using namespace std;
 
 int main() {
 
-	int ran_int = 10;
-	float ran_float = 20.0f;
-	double ran_double = 30.0;
-	srand(unsigned int(time(nullptr)));
+	random_device seed; // random device
+	default_random_engine eng(seed());
+	uniform_int_distribution<int> randInt(-250, 250);
+	uniform_real_distribution<float> randFloat(-250.0f, 250.0f);
+	uniform_real_distribution<double> randDouble(-250.0, 250.0);
 
-	Function<int, float, double> func(ran_int, ran_float, ran_double);
+	int numInt = randInt(eng);
+	float numFloat = randFloat(eng);
+	double numDouble = randDouble(eng);
+
+
+	Function<int, float> func1(numInt, numFloat);
 
 	cout << "Comparing int & float：" << endl;
-	ran_int = rand() / 500, ran_float = rand() / 500.0f;
-	cout << "int = " << ran_int << "	float = " << ran_float << endl;
-	cout << "Min：" << func.ReturnMin_T1_T2(ran_int, ran_float) << endl;
+	numInt = randInt(eng), numFloat = randFloat(eng);
+	cout << "int = " << numInt << "	float = " << numFloat << endl;
+	cout << "Min：" << func1.ReturnMin(numInt, numFloat) << "\n" << endl;
+
+	Function<int, double> func2(numInt, numFloat);
 
 	cout << "Comparing int & double：   " << endl;
-	ran_int = rand() / 500, ran_double = rand() / 500.0;
-	cout << "int = " << ran_int << "	double = " << ran_double << endl;
-	cout << "Min：" << func.ReturnMin_T1_T3(ran_int, ran_double) << endl;
+	numInt = randInt(eng), numDouble = randDouble(eng);
+	cout << "int = " << numInt << "	double = " << numDouble << endl;
+	cout << "Min：" << func2.ReturnMin(numInt, numDouble) << "\n" << endl;
+
+	Function<float, int> func3(numInt, numFloat);
 
 	cout << "Comparing float & int：   " << endl;
-	ran_float = rand() / 500.0f, ran_int = rand() / 500;
-	cout << "float = " << ran_float << "	int = " << ran_int << endl;
-	cout << "Min：" << func.ReturnMin_T2_T1(ran_float, ran_int) << endl;
+	numFloat = randFloat(eng), numInt = randInt(eng);
+	cout << "float = " << numFloat << "	int = " << numInt << endl;
+	cout << "Min：" << func3.ReturnMin(numFloat, numInt) << "\n" << endl;
+
+	Function<float, double> func4(numInt, numFloat);
 
 	cout << "Comparing float & double：  " << endl;
-	ran_float = rand() / 500.0f, ran_double = rand() / 500.0;
-	cout << "float = " << ran_float << "	double = " << ran_double << endl;
-	cout << "Min：" << func.ReturnMin_T2_T3(ran_float, ran_double) << endl;
+	numFloat = randFloat(eng), numDouble = randDouble(eng);
+	cout << "float = " << numFloat << "	double = " << numDouble << endl;
+	cout << "Min：" << func4.ReturnMin(numFloat, numDouble) << "\n" << endl;
+
+	Function<double, int> func5(numInt, numFloat);
 
 	cout << "Comparing double & int：   " << endl;
-	ran_double = rand() / 500.0, ran_int = rand() / 500;
-	cout << "double = " << ran_double << "	int = " << ran_int << endl;
-	cout << "Min：" << func.ReturnMin_T3_T1(ran_double, ran_int) << endl;
+	numDouble = randDouble(eng), numInt = randInt(eng);
+	cout << "double = " << numDouble << "	int = " << numInt << endl;
+	cout << "Min：" << func5.ReturnMin(numDouble, numInt) << "\n" << endl;
+
+	Function<double, float> func6(numInt, numFloat);
 
 	cout << "Comparing double & float：  " << endl;
-	ran_double = rand() / 500.0, ran_float = rand() / 500.0f;
-	cout << "double = " << ran_double << "	float = " << ran_float << endl;
-	cout << "Min：" << func.ReturnMin_T3_T2(ran_double, ran_float) << endl;
+	numDouble = randDouble(eng), numFloat = randFloat(eng);
+	cout << "double = " << numDouble << "	float = " << numFloat << endl;
+	cout << "Min：" << func6.ReturnMin(numDouble, numFloat) << "\n" << endl;
 
 	return 0;
 }
