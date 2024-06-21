@@ -4,13 +4,16 @@
 
 int main() {
 
-	Circle circle(5.0f);
-	Rectangle rect(10, 50);
+	IShape* circle = new Circle(5.0f);
+	IShape* rect = new Rectangle(10, 50);
 
-	circle.Size();
-	circle.Draw();
-	rect.Size();
-	rect.Draw();
+	circle->Size();
+	circle->Draw();
+	rect->Size();
+	rect->Draw();
+
+	delete circle;
+	delete rect;
 
 	return 0;
 }
